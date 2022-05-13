@@ -2,7 +2,7 @@
 
 ## 1、创建项目
 
-1、使用vite-cli命令
+1、使用 vite-cli 命令
 
 ```javascript
 // npm
@@ -31,40 +31,39 @@ cd 	vite-vue3-exercise
 
 ## 2、集成配置
 
-1、为保证node使用
+1、为保证 node 使用
 
 ```
 npm i @types/node --save-dev
 ```
 
-2、修改tsconfig.json
+2、修改 tsconfig.json
 
 ```json
 {
-  "compilerOptions": {
-    "typeRoots": [
-      "node_modules/@types", // 默认值
-      "src/types"
-   ],
-    "target": "esnext",
-    "useDefineForClassFields": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "strict": true,
-    "jsx": "preserve",
-    "sourceMap": true,
-    "resolveJsonModule": true,
-    "esModuleInterop": true,
-    "lib": ["esnext", "dom"],
-    "baseUrl": "./",
-    "paths":{
-      "@": ["src"],
-      "@/*": ["src/*"],
-    }
-  },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"]
+    "compilerOptions": {
+        "typeRoots": [
+            "node_modules/@types", // 默认值
+            "src/types"
+        ],
+        "target": "esnext",
+        "useDefineForClassFields": true,
+        "module": "esnext",
+        "moduleResolution": "node",
+        "strict": true,
+        "jsx": "preserve",
+        "sourceMap": true,
+        "resolveJsonModule": true,
+        "esModuleInterop": true,
+        "lib": ["esnext", "dom"],
+        "baseUrl": "./",
+        "paths": {
+            "@": ["src"],
+            "@/*": ["src/*"]
+        }
+    },
+    "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"]
 }
-
 ```
 
 3、修改 vite.config.ts
@@ -79,33 +78,33 @@ export default defineConfig({
     resolve: {
         //设置别名
         alias: {
-            '@': path.resolve(__dirname, 'src')
-        }
+            '@': path.resolve(__dirname, 'src'),
+        },
     },
     plugins: [vue()],
     server: {
         port: 8080, //启动端口
         hmr: {
             host: '127.0.0.1',
-            port: 8080
+            port: 8080,
         },
         // 设置 https 代理
         proxy: {
             '/api': {
                 target: 'your https address',
                 changeOrigin: true,
-                rewrite: (path: string) => path.replace(/^\/api/, '')
-            }
-        }
-    }
-})
+                rewrite: (path: string) => path.replace(/^\/api/, ''),
+            },
+        },
+    },
+});
 ```
 
 ## 3、代码风格统一
 
-### 	1、eslint
+### 1、eslint
 
-​		1、安装
+​ 1、安装
 
 ```
 npm i eslint eslint-plugin-vue --save-dev
@@ -114,7 +113,7 @@ npm i eslint eslint-plugin-vue --save-dev
 npm install @typescript-eslint/parser --save-dev
 ```
 
-​		2、创建配置文件： `.eslintrc.js`    or    `.eslintrc.json`
+​ 2、创建配置文件： `.eslintrc.js` or `.eslintrc.json`
 
 ```js
 module.exports = {
@@ -125,8 +124,8 @@ module.exports = {
         ecmaVersion: 2020,
         sourceType: 'module',
         ecmaFeatures: {
-            jsx: true
-        }
+            jsx: true,
+        },
     },
 
     extends: [
@@ -136,11 +135,11 @@ module.exports = {
 
     rules: {
         // override/add rules settings here, such as:
-    }
+    },
 };
 ```
 
-​		3、创建忽略文件： `.eslintignore`
+​ 3、创建忽略文件： `.eslintignore`
 
 ```
 node_modules/
@@ -148,7 +147,7 @@ dist/
 index.html
 ```
 
-4、修改package.json
+4、修改 package.json
 
 ```json
 {
@@ -169,7 +168,7 @@ index.html
 npm i prettier eslint-config-prettier eslint-plugin-prettier --save-dev
 ```
 
-2、创建配置文件：`prettier.config.js`   or  `.prettierrc.js`
+2、创建配置文件：`prettier.config.js` or `.prettierrc.js`
 
 ```js
 module.exports = {
@@ -207,11 +206,11 @@ module.exports = {
     // 根据显示样式决定 html 要不要折行
     htmlWhitespaceSensitivity: 'css',
     // 换行符使用 lf
-    endOfLine: 'auto'
-}
+    endOfLine: 'auto',
+};
 ```
 
-3、修改 .eslintrc.js  配置
+3、修改 .eslintrc.js 配置
 
 ```js
 module.exports = {
@@ -229,7 +228,7 @@ module.exports = {
 
 ```
 
-4、 修改package.json
+4、 修改 package.json
 
 ```
 {
@@ -243,16 +242,16 @@ module.exports = {
 }
 ```
 
-## 4、 集成pinia
+## 4、 集成 pinia
 
 特点：
 
-1. 完整的ts支持
+1. 完整的 ts 支持
 2. 足够轻量，压缩后体积小
-3. 去除mutations， 只有state，getters，actions
-4. actions支持同步异步
-5. 没有模块嵌套，只有store概念，store之间自由使用
-6. 无需手动添加store，store创建成功就会自动添加
+3. 去除 mutations， 只有 state，getters，actions
+4. actions 支持同步异步
+5. 没有模块嵌套，只有 store 概念，store 之间自由使用
+6. 无需手动添加 store，store 创建成功就会自动添加
 
 1、安装
 
@@ -260,7 +259,7 @@ module.exports = {
 npm i pinia --save
 ```
 
-2、新建src/store/index.ts
+2、新建 src/store/index.ts
 
 ```
  import { createPinia } from 'pinia'
@@ -270,7 +269,7 @@ npm i pinia --save
  export default store
 ```
 
-3、 在main.ts使用
+3、 在 main.ts 使用
 
 ```typescript
 import { createApp } from 'vue';
@@ -280,25 +279,24 @@ import store from './store';
 createApp(App).use(store).mount('#app');
 ```
 
-4、定义state， src/store/username.ts
+4、定义 state， src/store/username.ts
 
 ```typescript
- import { defineStore } from 'pinia'
+import { defineStore } from 'pinia';
 
- export const useUserStore = defineStore({
-   id: 'user', // id必填，且需要唯一
-   state: () => {
-     return {
-       name: '名字'
-     }
-   },
-   actions: {
-     updateName(name: string) {
-       this.name = name
-     }
-   }
- })
-
+export const useUserStore = defineStore({
+    id: 'user', // id必填，且需要唯一
+    state: () => {
+        return {
+            name: '名字',
+        };
+    },
+    actions: {
+        updateName(name: string) {
+            this.name = name;
+        },
+    },
+});
 ```
 
 5、使用
@@ -308,7 +306,7 @@ createApp(App).use(store).mount('#app');
 import { userNameStore } from '@/store/username';
 
 const userName = userNameStore();
-    // 修改值的变化
+// 修改值的变化
 userName.updateName('aaa');
 </script>
 
@@ -348,10 +346,9 @@ const router = createRouter({
     routes,
 });
 export default router;
-
 ```
 
-3、引入main
+3、引入 main
 
 ```
 import { createApp } from 'vue';
@@ -362,7 +359,7 @@ import router from '@/router';
 createApp(App).use(store).use(router).mount('#app');
 ```
 
-4、修改app.vue
+4、修改 app.vue
 
 ```vue
 <script setup lang="ts"></script>
@@ -370,10 +367,9 @@ createApp(App).use(store).use(router).mount('#app');
 <template>
     <router-view />
 </template>
-
 ```
 
-## 6、css集成
+## 6、css 集成
 
 ### 1、normalize.css（reset.css）
 
@@ -383,7 +379,7 @@ createApp(App).use(store).use(router).mount('#app');
 npm install normalize.css
 ```
 
-2、main引用
+2、main 引用
 
 ```
 import 'normalize.css/normalize.css'; // reset css
@@ -395,7 +391,7 @@ import 'normalize.css/normalize.css'; // reset css
 npm add -d sass
 ```
 
-## 7、集成vueuse
+## 7、集成 vueuse
 
 1、安装
 
@@ -405,29 +401,35 @@ npm i @vueuse/core
 
 [官网链接]: https://vueuse.org/
 
-2、简单的demo
+2、简单的 demo
 
 ```vue
- <template>
-   <h1> 测试 vueUse 的鼠标坐标 </h1>
-   <h3>Mouse: {{x}} x {{y}}</h3>
- </template>
+ 
+<template>
+       
+    <h1>测试 vueUse 的鼠标坐标</h1>
+       
+    <h3>Mouse: {{ x }} x {{ y }}</h3>
+     
+</template>
 
- <script lang="ts">
-     import { defineComponent } from 'vue';
-     import { useMouse } from '@vueuse/core'
+ 
+<script lang="ts">
+import { defineComponent } from 'vue';
+import { useMouse } from '@vueuse/core';
 
-     export default defineComponent({
-         name: 'VueUse',
-         setup() {
-           const { x, y } = useMouse()
+export default defineComponent({
+    name: 'VueUse',
+    setup() {
+        const { x, y } = useMouse();
 
-           return {
-             x, y
-           }
-         }
-     });
- </script>
+        return {
+            x,
+            y,
+        };
+    },
+});
+</script>
 ```
 
 ## 8、axios
@@ -441,37 +443,34 @@ npm i axios
 2、src/utils/axios.ts
 
 ```typescript
- import axios, { AxiosResponse, AxiosRequestConfig } from 'axios';
+import axios, { AxiosResponse, AxiosRequestConfig } from 'axios';
 
- const service = axios.create();
+const service = axios.create(); // Request interceptors
 
- // Request interceptors
- service.interceptors.request.use(
-     (config: AxiosRequestConfig) => {
-         // do something
-         return config;
-     },
-     (error: any) => {
-         Promise.reject(error);
-     }
- );
+service.interceptors.request.use(
+    (config: AxiosRequestConfig) => {
+        // do something
+        return config;
+    },
+    (error: any) => {
+        Promise.reject(error);
+    },
+); // Response interceptors
 
- // Response interceptors
- service.interceptors.response.use(
-     async (response: AxiosResponse) => {
-         // do something
-     },
-     (error: any) => {
-         // do something
-         return Promise.reject(error);
-     }
- );
+service.interceptors.response.use(
+    async (response: AxiosResponse) => {
+        // do something
+    },
+    (error: any) => {
+        // do something
+        return Promise.reject(error);
+    },
+);
 
- export default service;
-
+export default service;
 ```
 
-3、封装axios请求、响应。
+3、封装 axios 请求、响应。
 
 src/api/index.ts
 
@@ -489,7 +488,7 @@ import request from '@/utils/axios';
 /**
  * 登录
  */
- 
+
 interface IResponseType<P = {}> {
     code?: number;
     status: number;
@@ -506,13 +505,13 @@ export const login = (username: string, password: string) => {
         method: 'post',
         data: {
             username,
-            password
-        }
+            password,
+        },
     });
 };
 ```
 
-4、由于使用了TS，需要增加src/types/shims-axios.d.ts
+4、由于使用了 TS，需要增加 src/types/shims-axios.d.ts
 
 ```typescript
 import { AxiosRequestConfig } from 'axios';
@@ -527,12 +526,23 @@ declare module 'axios' {
         get<T = any>(url: string, config?: AxiosRequestConfig): Promise<T>;
         delete<T = any>(url: string, config?: AxiosRequestConfig): Promise<T>;
         head<T = any>(url: string, config?: AxiosRequestConfig): Promise<T>;
-        post<T = any>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T>;
-        put<T = any>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T>;
-        patch<T = any>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T>;
+        post<T = any>(
+            url: string,
+            data?: any,
+            config?: AxiosRequestConfig,
+        ): Promise<T>;
+        put<T = any>(
+            url: string,
+            data?: any,
+            config?: AxiosRequestConfig,
+        ): Promise<T>;
+        patch<T = any>(
+            url: string,
+            data?: any,
+            config?: AxiosRequestConfig,
+        ): Promise<T>;
     }
 }
-
 ```
 
 5、 页面中使用
@@ -546,4 +556,3 @@ declare module 'axios' {
 </script>
 
 ```
-
